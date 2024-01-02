@@ -13,16 +13,12 @@ jobs:
     #   uses: actions/checkout@v2
     #   with: { ref: debug }
     # --label "$LABELS"
-    - name: Install GH CLI
-      uses: dev-hanz-ops/install-gh-cli-action@v0.1.0
-      with:
-        gh-cli-version: 2.32.0 # optional, see action.yml for current default
     - name: List files
       run: ls
     - name: Create team sync issue
       run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"
       env:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
         TITLE: Team sync
         ASSIGNEES: hafro05,nprime496
