@@ -167,11 +167,12 @@ def main() -> None:
 
     DELAY = 0.2 # Number of months after which we are included in the draw again afer a participation
     ACTIVITIES = ["presentation"] # ["presentation", "article"]
-    NB_OF_MEMBERS_TO_DRAW = 3
+    NB_OF_MEMBERS_TO_DRAW = 2
 
     # Get the information of the members
     # Raw URL of the Google Sheet containing the information of the members
-    members_sheet_url = "https://docs.google.com/spreadsheets/d/12iwGURrqjezAuqI96fv16skKExkFY5WBloX-2iIKL5g/edit#gid=0"
+    #members_sheet_url = "https://docs.google.com/spreadsheets/d/12iwGURrqjezAuqI96fv16skKExkFY5WBloX-2iIKL5g/edit#gid=0"
+    members_sheet_url = "https://docs.google.com/spreadsheets/d/1UsYlJm3pLA56RiC_ORc87YR-qG5lvkYeILOQKNZ7ICU/edit?usp=sharing"
     personal_info_columns = ["emails", "github username"]
 
     participation_colmun_from_activity = lambda activity : f"{activity}_last_participation"
@@ -202,7 +203,7 @@ def main() -> None:
             # Get the associated github usernames of the selected emails
             selected_members = data[data["emails"].isin(choosed_emails)]
             selected_members_gh_usernames = selected_members["github username"].values
-            selected_members_gh_usernames = ["1001pepi", "1001pepi"]
+            
             # Write the selected usernames in the GITHUB_ENV environment
             env_file = os.getenv('GITHUB_ENV')
         
