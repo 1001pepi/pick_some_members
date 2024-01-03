@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - name: Git checkout
-    #   uses: actions/checkout@v2
-    #   with: { ref: debug }
-    # --label "$LABELS"
-    - name: List files
-      run: ls
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+    - run: pip install numpy pandas
+    - run: python main.py
+    - run: echo  ${{ env.user1 }}
     - name: Create team sync issue
       run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"
       env:
@@ -24,7 +25,7 @@ jobs:
         ASSIGNEES: hafro05,nprime496
         LABELS: weekly sync,docs-team
         BODY: |
-          Hello @1001pepi,
+          Hello @${{ env.user1 }},
 
           I hope this message finds you well! I wanted to extend an invitation your way. You've been selected to present either in an upcoming meeting or contribute an article for our group. We greatly value your expertise and would love to hear your thoughts on a subject you're passionate about.
           
